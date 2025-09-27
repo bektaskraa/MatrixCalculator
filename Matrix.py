@@ -34,9 +34,19 @@ def add(Matrix1:Matrix,Matrix2:Matrix):
         result = Matrix()
         result.create_matrix(Matrix1.rows,Matrix1.cols)
         for i in range(result.rows):
-            #print("index:",i,"r->",result.matrix[i],"m1->",Matrix1.matrix[i],"m2->",Matrix2.matrix[i])
             for j in range(Matrix1.cols):
                 result.matrix[i][j] = Matrix1.matrix[i][j] + Matrix2.matrix[i][j]
+        return result
+    else:
+        print("Error(add): Matris boyutları eşleşmiyor")
+
+def sub(Matrix1:Matrix,Matrix2:Matrix):
+    if Matrix1.rows == Matrix2.rows and Matrix1.cols == Matrix2.cols:
+        result = Matrix()
+        result.create_matrix(Matrix1.rows,Matrix1.cols)
+        for i in range(result.rows):
+            for j in range(Matrix1.cols):
+                result.matrix[i][j] = Matrix1.matrix[i][j] - Matrix2.matrix[i][j]
         return result
     else:
         print("Error(add): Matris boyutları eşleşmiyor")
