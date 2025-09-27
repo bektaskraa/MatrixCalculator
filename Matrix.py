@@ -39,6 +39,7 @@ def add(Matrix1:Matrix,Matrix2:Matrix):
         return result
     else:
         print("Error(add): Matris boyutları eşleşmiyor")
+        return None
 
 def sub(Matrix1:Matrix,Matrix2:Matrix):
     if Matrix1.rows == Matrix2.rows and Matrix1.cols == Matrix2.cols:
@@ -50,3 +51,21 @@ def sub(Matrix1:Matrix,Matrix2:Matrix):
         return result
     else:
         print("Error(add): Matris boyutları eşleşmiyor")
+        return None
+
+
+def mul(Matrix1: Matrix, Matrix2: Matrix):
+    if Matrix1.cols != Matrix2.rows:
+        print("Error(mul): Çarpma işlemi için boyutlar eşleşmiyor!")
+        return None
+
+    result = Matrix()
+    result.create_matrix(Matrix1.rows, Matrix2.cols)
+
+    for i in range(Matrix1.rows):
+        for j in range(Matrix2.cols):
+            sum_of_products = 0
+            for k in range(Matrix1.cols):
+                sum_of_products += Matrix1.matrix[i][k] * Matrix2.matrix[k][j]
+            result.matrix[i][j] = sum_of_products
+    return result
