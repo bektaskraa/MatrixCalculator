@@ -69,3 +69,7 @@ def mul(Matrix1: Matrix, Matrix2: Matrix):
                 sum_of_products += Matrix1.matrix[i][k] * Matrix2.matrix[k][j]
             result.matrix[i][j] = sum_of_products
     return result
+
+def transpose(Matrix1:Matrix):
+    result = Matrix(Matrix1.get_columns())
+    return result
