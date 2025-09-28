@@ -22,12 +22,10 @@ Kod dosyasını projenize dahil ettikten sonra, `Matrix` sınıfını ve `add` f
 İşte kütüphaneyi nasıl kullanacağınıza dair temel bir örnek:
 
 ```python
-# Matrix sınıfı ve add fonksiyonunun olduğu dosyanızı import edin
-# from matrix_calculator import Matrix, add 
+# Matrix sınıfı ve fonksiyonları import edin
+# from matrix_calculator import Matrix, add, sub, mul, transpose
 
 # 1. Matris Tanımlama
-# Not: Tanımlanan matrisler aynı boyutta olmalıdır.
-
 A = Matrix([[1, 2, 3],
             [4, 5, 6]])
 
@@ -37,28 +35,48 @@ B = Matrix([[10, 20, 30],
 # 2. Matrisleri Görüntüleme
 print("--- A Matrisi ---")
 A.print_matrix()
-# Çıktı:
-# [1, 2, 3]
-# [4, 5, 6]
 
 # 3. Matris Toplama
-# C = A + B
 C = add(A, B)
-
 print("\n--- C = A + B Matrisi ---")
 C.print_matrix()
-# Çıktı:
-# [11, 22, 33]
-# [44, 55, 66]
 
-# 4. Hata Yönetimi (Boyut Uyuşmazlığı)
-D = Matrix([[1, 2], [3, 4]])
-E = Matrix([[1, 2, 3], [4, 5, 6]])
+# 4. Matris Çıkarma
+D = sub(A, B)
+print("\n--- D = A - B Matrisi ---")
+D.print_matrix()
 
-print("\n--- Boyut Uyuşmazlığı Örneği (D + E) ---")
-add(D, E)
+# 5. Hata Yönetimi (Boyut Uyuşmazlığı)
+D2 = Matrix([[1, 2], [3, 4]])
+E2 = Matrix([[1, 2, 3], [4, 5, 6]])
+print("\n--- Boyut Uyuşmazlığı Örneği (D2 + E2) ---")
+add(D2, E2)  # Hata mesajı beklenir
+
+# 6. Matris Çarpımı (mul)
+M1 = Matrix([[1, 2],
+             [3, 4],
+             [5, 6]])
+
+M2 = Matrix([[7, 8, 9],
+             [10, 11, 12]])
+
+print("\n--- Matris Çarpımı (M1 x M2) ---")
+M3 = mul(M1, M2)
+M3.print_matrix()
 # Çıktı:
-# Error(add): Matris boyutları eşleşmiyor
+# [27, 30, 33]
+# [61, 68, 75]
+# [95, 106, 117]
+
+# 7. Matris Transpozu (transpose)
+print("\n--- A Matrisi Transpozu ---")
+T = transpose(A)
+T.print_matrix()
+# Çıktı:
+# [1, 4]
+# [2, 5]
+# [3, 6]
+
 ```
 ## 🛠️ Kod Yapısı
 
@@ -74,9 +92,12 @@ add(D, E)
 
 ### Fonksiyonlar
 
-| Fonksiyon Adı | Açıklama |
-| :--- | :--- |
-| `add(Matrix1: Matrix, Matrix2: Matrix)` | Aynı boyuttaki iki matrisi toplar ve sonucu yeni bir `Matrix` nesnesi olarak döndürür. Boyutlar uyuşmazsa hata mesajı verir. |
+| Fonksiyon Adı                           | Açıklama                                                                                                                            |
+|:----------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|
+| `add(Matrix1: Matrix, Matrix2: Matrix)` | Aynı boyuttaki iki matrisi toplar ve sonucu yeni bir `Matrix` nesnesi olarak döndürür. Boyutlar uyuşmazsa hata mesajı verir.        |
+| `sum(Matrix1: Matrix, Matrix2: Matrix)` | Aynı boyuttaki iki matrisi çıkartır ve sonucu yeni bir `Matrix` nesnesi olarak döndürür. Boyutlar uyuşmazsa hata mesajı verir.      |
+| `mul(Matrix1: Matrix, Matrix2: Matrix)` | İlk matrisin sütun sayısı ikinci matrisin satır sayısına eşitse matris çarpımını yapar ve sonucu yeni bir `Matrix` olarak döndürür. |
+| `transpose(Matrix1: Matrix)` | Verilen matrisi transpoze eder (satır ve sütunları yer değiştirir) ve sonucu yeni bir `Matrix` olarak döndürür.                                                                                       |
 
 ---
 
