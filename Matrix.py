@@ -5,6 +5,16 @@ class Matrix:
             self.rows = len(matrix)
             self.cols = len(matrix[0])
 
+    def __str__(self):
+        return str(self.matrix)
+    def __add__(self, Matrix2):
+        return add(self,Matrix2)
+    def __sub__(self, Matrix2):
+        return sub(self,Matrix2)
+    def __mul__(self, Matrix2):
+        return mul(self,Matrix2)
+
+
     def create_matrix(self,row,col):
         self.matrix = []
         for i in range(row):
@@ -28,6 +38,7 @@ class Matrix:
     def print_matrix(self):
         for row in self.matrix:
             print(row)
+
 
 def add(Matrix1:Matrix,Matrix2:Matrix):
     if Matrix1.rows == Matrix2.rows and Matrix1.cols == Matrix2.cols:
